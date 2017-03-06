@@ -7,7 +7,7 @@
 //
 
 #import "DAViewController.h"
-#import "AppManager.h"
+//#import "AppManager.h"
 
 @interface DAViewController ()
 
@@ -31,7 +31,7 @@
 {
     [super viewWillAppear:animated];
     [dataLabel setText:@"Should see a simple SQLDataAccess here."];
-    
+    /*
     NSMutableArray *dataArray = [[AppManager SQLDataAccess] GetRecordsForQuery:@"select * from AppInfo ",nil];
     NSLog(@"DAView : dataArray = %@",dataArray);
     NSMutableString *data = [NSMutableString new];
@@ -43,7 +43,7 @@
         [data appendFormat:@"%@",dataArray];
         [textView setText:data];
      }
-    
+    */
 }
 
 - (void)didReceiveMemoryWarning

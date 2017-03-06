@@ -8,14 +8,14 @@
 
 #import "DAAppDelegate.h"
 #import "AppManager.h"
-#import "SettingsModel.h"
+//#import "SettingsModel.h"
 
 @implementation DAAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    
+    /*
     //Set some fake user for now
     if(![SettingsModel getLoginState])
     {
@@ -66,7 +66,7 @@
     dataArray = [[AppManager SQLDataAccess] GetRecordsForQuery:@"select * from AppInfo ",nil];
     
     NSLog(@"AppDelegate : dataArray = %@",dataArray);
-    
+    */
     /*
      //You'll see this if the Database worked
      AppDelegate : dataArray = (

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1390F59E0ED7B328F6156BFB /* Pods_SQLDataAccess_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF47BA1AD0E7EFD5B363C7E1 /* Pods_SQLDataAccess_Example.framework */; };
-		1A16061C1E6D545800261108 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A16061B1E6D545800261108 /* libsqlite3.tbd */; };
 		1A16061E1E6D546600261108 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A16061D1E6D546600261108 /* Security.framework */; };
 		1A1606231E6D566300261108 /* Example.db in Resources */ = {isa = PBXBuildFile; fileRef = 1A1606221E6D566300261108 /* Example.db */; };
 		1A1606241E6D566300261108 /* Example.db in Resources */ = {isa = PBXBuildFile; fileRef = 1A1606221E6D566300261108 /* Example.db */; };
@@ -82,7 +81,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A16061E1E6D546600261108 /* Security.framework in Frameworks */,
-				1A16061C1E6D545800261108 /* libsqlite3.tbd in Frameworks */,
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
