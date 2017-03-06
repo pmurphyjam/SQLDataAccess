@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SQLDataAccess'
-  s.version          = '0.1.1'
+  s.version          = '0.1.2'
   s.summary          = 'SQLDataAccess is a library used to facilitate using SQLite in iOS.'
 
 #  s.library          = 'sqlite3'
