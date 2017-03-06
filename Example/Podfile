@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'SQLDataAccess_Example' do
+  pod 'SQLDataAccess', :path => '../'
+
+  target 'SQLDataAccess_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
