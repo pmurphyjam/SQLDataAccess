@@ -9,11 +9,8 @@
 Pod::Spec.new do |s|
   s.name             = 'SQLDataAccess'
   s.version          = '0.1.0'
-<<<<<<< HEAD
-  s.summary          = 'A short description of SQLDataAccess.'
-=======
+
   s.summary          = 'SQLDataAccess is a library used to facilitate using SQLite in iOS.'
->>>>>>> 7f5358843a889cdd1021660931c1ae2042e6c961
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -28,19 +25,11 @@ TODO: Add long description of the pod here.
   s.homepage         = 'https://github.com/pmurphyjam/SQLDataAccess'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-<<<<<<< HEAD
-  s.author           = { 'pmurphyjam' => 'pat@docspera.com' }
-  s.source           = { :git => 'https://github.com/pmurphyjam/SQLDataAccess.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
-
-  s.ios.deployment_target = '8.0'
-=======
   s.author           = { 'pmurphyjam' => 'pmurphyjam@gmail.com' }
   s.source           = { :git => 'https://github.com/pmurphyjam/SQLDataAccess.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '10.0'
->>>>>>> 7f5358843a889cdd1021660931c1ae2042e6c961
 
   s.source_files = 'SQLDataAccess/Classes/**/*'
   
