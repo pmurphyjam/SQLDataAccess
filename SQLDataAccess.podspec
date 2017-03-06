@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'SQLDataAccess'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of SQLDataAccess.'
+  s.summary          = 'SQLDataAccess is a library used to facilitate using SQLite in iOS.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,17 +18,17 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+SQLDataAccess makes writing SQL statements for SQLite3 easy, and joy to work with in iOS!
                        DESC
 
   s.homepage         = 'https://github.com/pmurphyjam/SQLDataAccess'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'pmurphyjam' => 'pat@docspera.com' }
+  s.author           = { 'pmurphyjam' => 'pmurphyjam@gmail.com' }
   s.source           = { :git => 'https://github.com/pmurphyjam/SQLDataAccess.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '10.0'
 
   s.source_files = 'SQLDataAccess/Classes/**/*'
   
