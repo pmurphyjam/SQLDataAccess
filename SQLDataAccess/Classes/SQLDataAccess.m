@@ -170,9 +170,7 @@
     
     if(!conn_pointer)
     {
-        NSString *errCode = [NSString stringWithFormat:@"%d",sqlite3_errcode(sqlite3dbConn)];
-        NSString *codeStr = [NSString stringWithFormat:@"%s",sqlite3_errmsg(sqlite3dbConn)];
-        NSDBLog(@"DA : Error code opening the database : %@ : %@",errCode,codeStr);
+        NSDBLog(@"DA : Error code opening the database : %@ : %@",[NSString stringWithFormat:@"%d",sqlite3_errcode(sqlite3dbConn)],[NSString stringWithFormat:@"%s",sqlite3_errmsg(sqlite3dbConn)]);
         return false;
     }
     else
@@ -217,9 +215,7 @@
         conn_pointer = (sqlite3_open([dbfile UTF8String], &sqlite3dbConn) == SQLITE_OK);
         if(!conn_pointer)
         {
-            NSString *errCode = [NSString stringWithFormat:@"%d",sqlite3_errcode(sqlite3dbConn)];
-            NSString *codeStr = [NSString stringWithFormat:@"%s",sqlite3_errmsg(sqlite3dbConn)];
-            NSDBLog(@"DA : Error code copying the database : %@ : %@",errCode,codeStr);
+            NSDBLog(@"DA : Error code copying the database : %@ : %@",[NSString stringWithFormat:@"%d",sqlite3_errcode(sqlite3dbConn)],[NSString stringWithFormat:@"%s",sqlite3_errmsg(sqlite3dbConn)]);
             [self closeConnection];
             return false;
         }
@@ -247,9 +243,7 @@
     
     if(!conn_pointer)
     {
-        NSString *errCode = [NSString stringWithFormat:@"%d",sqlite3_errcode(sqlite3dbConn)];
-        NSString *codeStr = [NSString stringWithFormat:@"%s",sqlite3_errmsg(sqlite3dbConn)];
-        NSDBLog(@"DA : Error code opening the database : %@ : %@",errCode,codeStr);
+        NSDBLog(@"DA : Error code opening the database : %@ : %@",[NSString stringWithFormat:@"%d",sqlite3_errcode(sqlite3dbConn)],[NSString stringWithFormat:@"%s",sqlite3_errmsg(sqlite3dbConn)]);
         [self closeConnection];
         return false;
     }

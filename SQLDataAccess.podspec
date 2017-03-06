@@ -11,6 +11,9 @@ Pod::Spec.new do |s|
   s.version          = '0.1.1'
   s.summary          = 'SQLDataAccess is a library used to facilitate using SQLite in iOS.'
 
+#  s.library          = 'sqlite3'
+#  s.platform         = :ios
+
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
 #   * Try to keep it short, snappy and to the point.
@@ -18,7 +21,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+SQLDataAccess makes writing SQL statements for SQLite3 easy, and joy to work with!
                        DESC
 
   s.homepage         = 'https://github.com/pmurphyjam/SQLDataAccess'
