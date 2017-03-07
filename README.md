@@ -105,9 +105,9 @@ This is what the App should do:
         value = "1.2";
     }
     
-    For a more complicated example using SQL Transactions see:
+## For a more complicated example using SQL Transactions see:
 [ABExample](https://github.com/pmurphyjam/ABExample)
-    Using the same SQLDataAcess class.
+Using the same SQLDataAcess class.
 
 ## Author
 
