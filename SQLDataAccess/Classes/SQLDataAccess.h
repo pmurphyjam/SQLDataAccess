@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Fitamatic All rights reserved.
 //
 #import <Foundation/Foundation.h>
-#include <sqlite3.h>
+#import <sqlite3.h>
 
 @interface SQLDataAccess : NSObject
 {
