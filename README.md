@@ -23,13 +23,15 @@ pod "SQLDataAccess"
 end
 ```
 Create a database named: "Example.db" and put it in your NSBundle directory.
-DROP TABLE IF EXISTS "AppInfo";
-CREATE TABLE "AppInfo" (
+
+    DROP TABLE IF EXISTS "AppInfo";
+    CREATE TABLE "AppInfo" (
 	 "ID" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
 	 "name" text,
 	 "value" text,
 	 "descrip" text
-);
+    );
+    
 Now in your AppDelegate : didFinishLaunchingWithOptions 
 
     //Set some fake user for now
@@ -39,7 +41,7 @@ Now in your AppDelegate : didFinishLaunchingWithOptions
         [SettingsModel setUserId:[NSNumber numberWithInt:1]];
         [SettingsModel setCountry:@"USA"];
     }
-#ifdef ENCRYPT
+    #ifdef ENCRYPT
     //Set this just once! These are required for SQLCipher and encryption since the passwords
     //are always used for the encryption keys plus some salt
     if(![SettingsModel getLoginState])
@@ -48,7 +50,7 @@ Now in your AppDelegate : didFinishLaunchingWithOptions
         [SettingsModel setDBPW1:@"1260793RTgu"];
     }
     [SettingsModel setDBCanEncrypt:YES];
-#endif
+    #endif
     
     [SettingsModel setLoginState:YES];
     
@@ -90,11 +92,12 @@ Now in your AppDelegate : didFinishLaunchingWithOptions
     [[AppManager DataAccess] openConnection];
 
 This is what the App should do:
-!) Copy Example.db to the Documents directory, remember you have to create it first, and add it to your Xcode project!
-2) Access it, and writes into it, 'App', '1.2', 'Database works'
-3) If it works you see in the console
 
-AppDelegate : dataArray = (
+    1) Copy Example.db to the Documents directory, remember you have to create it first, and add it to your Xcode project!
+    2) Access it, and writes into it, 'App', '1.2', 'Database works'
+    3) If it works you see in the console
+
+    AppDelegate : dataArray = (
         {
         ID = 1;
         descrip = "Database works";
@@ -102,9 +105,9 @@ AppDelegate : dataArray = (
         value = "1.2";
     }
     
-For a more complicated example see:
-https://github.com/pmurphyjam/ABExample
-Using the same SQLDataAcess class.
+    For a more complicated example using SQL Transactions see:
+    https://github.com/pmurphyjam/ABExample
+    Using the same SQLDataAcess class.
 
 ## Author
 
