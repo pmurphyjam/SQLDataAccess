@@ -35,9 +35,9 @@ s.source_files = 'SQLDataAccess/Classes/**/*'
 # This libraries command makes it work, otherwise it gets 'Undefined symbols for architecture x86_64' during linking
 s.libraries = 'sqlite3'
 
-# s.resource_bundles = {
-#   'SQLDataAccess' => ['SQLDataAccess/Assets/*.png']
-# }
+   s.resource_bundles = {
+     'SQLDataAccess' => ['SQLDataAccess/Resources/Example.db']
+   }
 
 # s.public_header_files = 'Pod/Classes/**/*.h'
 # s.frameworks = 'UIKit', 'MapKit'

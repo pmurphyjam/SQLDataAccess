@@ -158,42 +158,6 @@ __strong static NSDateFormatter *dateFormatter = nil;
     return status;
 }
 
-+(BOOL)DoesLibraryFileExistWithName:(NSString*)fileName
-{
-    BOOL status = YES;
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *fileNamePath = [NSString stringWithFormat:@"/DocSpera/%@",fileName];
-    NSString *pathForFile = [documentsDirectory stringByAppendingPathComponent:fileNamePath];
-    if(![fileManager fileExistsAtPath:pathForFile])
-        status = NO;
-    return status;
-}
-
-+(NSString*)ReturnPathForLibraryFileWithName:(NSString*)fileName
-{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *fileNamePath = [NSString stringWithFormat:@"/DocSpera/%@",fileName];
-    NSString *pathForFile = [documentsDirectory stringByAppendingPathComponent:fileNamePath];
-    return pathForFile;
-}
-
-+(BOOL)DeleteLibraryFileWithName:(NSString*)fileName
-{
-    BOOL status = YES;
-    NSError *error;
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *fileNamePath = [NSString stringWithFormat:@"/DocSpera/%@",fileName];
-    NSString *pathForFile = [documentsDirectory stringByAppendingPathComponent:fileNamePath];
-    if ([fileManager removeItemAtPath:pathForFile error:&error] != YES)
-        status = NO;
-    return status;
-}
-
 +(BOOL)DeleteFileWithName:(NSString*)fileName
 {
     BOOL status = YES;

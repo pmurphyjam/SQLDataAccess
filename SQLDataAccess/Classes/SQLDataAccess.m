@@ -151,34 +151,6 @@
     }
 }
 
--(BOOL) openLibraryConnection:(NSString*)dbFile
-{
-    if(sqlite3dbConn)
-        return true;
-    
-    NSString* dbfile = [AppManager ReturnPathForLibraryFileWithName:dbFile];
-    BOOL doesDBFileExist = [AppManager DoesLibraryFileExistWithName:dbFile];
-    NSDBLog(@"DA : doesDBFileExist = %@",doesDBFileExist?@"YES":@"NO");
-    
-    conn_pointer = (sqlite3_open([dbfile UTF8String], &sqlite3dbConn) == SQLITE_OK);
-    
-    if(!doesDBFileExist)
-    {
-        NSDBLog(@"DA : openLibraryConnection : ERROR no DBFile ");
-        return false;
-    }
-    
-    if(!conn_pointer)
-    {
-        NSDBLog(@"DA : Error code opening the database : %@ : %@",[NSString stringWithFormat:@"%d",sqlite3_errcode(sqlite3dbConn)],[NSString stringWithFormat:@"%s",sqlite3_errmsg(sqlite3dbConn)]);
-        return false;
-    }
-    else
-    {
-        return true;
-    }
-}
-
 -(BOOL)isDBOpened
 {
     BOOL status = NO;

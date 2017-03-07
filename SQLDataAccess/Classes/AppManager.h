@@ -23,9 +23,6 @@
 +(NSString*)PathForFileWithName:(NSString*)fileName;
 +(BOOL)DoesFileExistWithName:(NSString*)fileName;
 +(BOOL)DeleteFileWithName:(NSString*)fileName;
-+(BOOL)DoesLibraryFileExistWithName:(NSString*)fileName;
-+(BOOL)DeleteLibraryFileWithName:(NSString*)fileName;
-+(NSString*)ReturnPathForLibraryFileWithName:(NSString*)fileName;
 +(NSMutableData*)AES256Encrypt:(NSString*)plainText;
 +(NSString*)AES256Decrypt:(NSMutableData*)encryptData;
 
