@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-SQLDataAccess makes writing SQL statements for SQLite3 easy, and joy to work with in iOS!
+SQLDataAccess makes writing SQL query statements for SQLite databases easy and a joy to work with in iOS! SQLDataAccess also works for large SQL Transactions speeding up performance dramatically on any kind of query. Need a HIPAA compliant database for security? SQLDataAccess is super easy to integrate with SQLCipher from (www.zetetic.net). Now you can have both worlds, easy of use, and 256 bit AES encryption along with phenomenal performace!
                        DESC
 
   s.homepage         = 'https://github.com/pmurphyjam/SQLDataAccess'
@@ -26,12 +26,15 @@ SQLDataAccess makes writing SQL statements for SQLite3 easy, and joy to work wit
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'pmurphyjam' => 'pmurphyjam@gmail.com' }
   s.source           = { :git => 'https://github.com/pmurphyjam/SQLDataAccess.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.social_media_url = 'https://twitter.com/pmurphyjam'
 
   s.ios.deployment_target = '10.0'
 
   s.source_files = 'SQLDataAccess/Classes/**/*'
-  
+
+# This libraries command makes it work, otherwise it gets 'Undefined symbols for architecture x86_64' during linking
+  s.libraries = 'sqlite3'
+
   # s.resource_bundles = {
   #   'SQLDataAccess' => ['SQLDataAccess/Assets/*.png']
   # }
@@ -39,4 +42,5 @@ SQLDataAccess makes writing SQL statements for SQLite3 easy, and joy to work wit
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
+
 end
