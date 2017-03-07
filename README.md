@@ -22,7 +22,7 @@ pod "SQLDataAccess"
 
 ## Author
 
-pmurphyjam, pat@docspera.com
+pmurphyjam, pmurphyjam@gmail.com
 
 ## License
 
