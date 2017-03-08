@@ -28,7 +28,8 @@ end
 Copy the database named "Example.db" located in:
 SQLDataAccess/SQDataAccess/Resources/Example.db
 And put it anywhere in your NSBundle directory and make sure it's visible
-in Xcode's Project Navigator by dragging it into Xcode.
+in Xcode's Project Navigator by dragging it into Xcode. The name is dictated
+by the define in AppConstants.h DB_FILE and DB_FILEX.
 
 "Example.db" has the following info in it, the SQL to create it is below.
 
