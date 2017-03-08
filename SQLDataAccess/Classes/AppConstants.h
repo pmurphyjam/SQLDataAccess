@@ -13,19 +13,14 @@
 #define ServerUrl @"http://your.company.com/"
 #define ServerDomain "yahoo.com"
 
-#define DB_FILE                       @"Example.db"
-#define DB_FILEX                      @"ExampleX.db"
+//Declare as extern so they can be changed in projects AppDelegate
+extern NSString *DB_FILE;
+extern NSString *DB_FILEX;
+
 #define DB_KEY                        @"24592ED456983DEAB4598234598EDC3F25098EF240975EDF4358297DEF245FDE"
 #define EN_KEY                        @"3FEF5CA851E7B34E5670B023F08503493D451A05CE4D2EDC6833F666A8086BEC"
 #define SQLITE_CIPHER_VERSION         3008000
 
-
-//#define DEBUG
-#ifdef DEBUG
-#    define NDLog(...) NSLog(__VA_ARGS__)
-#else
-#    define NDLog(...)
-#endif
 
 //#define DEBUGNSQL
 #ifdef DEBUGNSQL

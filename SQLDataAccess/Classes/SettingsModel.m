@@ -16,6 +16,25 @@
 __strong static NSUserDefaults *prefs;
 __strong static NSDictionary *brandDic;
 
+@synthesize prefs;
+
+- (id)init {
+    if (self = [super init]) {
+        self.prefs = [NSUserDefaults standardUserDefaults];
+    }
+    return self;
+}
+
++ (instancetype)settings
+{
+    static SettingsModel *settings = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        settings = [[self alloc] init];
+    });
+    return settings;
+}
+
 +(void)logout
 {
     [self resetDefaults];
@@ -32,26 +51,22 @@ __strong static NSDictionary *brandDic;
 }
 
 +(void)setUserName:(NSString*)userName{
-	prefs = [NSUserDefaults standardUserDefaults];
-	[prefs setObject:userName forKey:@"UserName"];
+    [[[SettingsModel settings] prefs] setObject:userName forKey:@"UserName"];
 }
 
 +(NSString*)getUserName
 {
-	prefs = [NSUserDefaults standardUserDefaults];
-	return [prefs objectForKey:@"UserName"];
+    return [[[SettingsModel settings] prefs] objectForKey:@"UserName"];
 }
 
 +(void)setUserId:(NSNumber*)userId
 {
-    prefs = [NSUserDefaults standardUserDefaults];
-    [prefs setObject:userId forKey:@"UserID"];
+    [[[SettingsModel settings] prefs] setObject:userId forKey:@"UserID"];
 }
 
 +(NSNumber*)getUserId
 {
-    prefs = [NSUserDefaults standardUserDefaults];
-    NSNumber *userId = [prefs objectForKey:@"UserID"];
+    NSNumber *userId = [[[SettingsModel settings] prefs] objectForKey:@"UserID"];
     if ([userId isKindOfClass:[NSNull class]] || userId == nil)
         userId = [NSNumber numberWithInt:-1];
     return userId;
@@ -59,8 +74,7 @@ __strong static NSDictionary *brandDic;
 
 +(NSString*)getUserStrId
 {
-    prefs = [NSUserDefaults standardUserDefaults];
-    NSNumber *userId = [prefs objectForKey:@"UserID"];
+    NSNumber *userId = [[[SettingsModel settings] prefs] objectForKey:@"UserID"];
     if ([userId isKindOfClass:[NSNull class]] || userId == nil)
         userId = [NSNumber numberWithInt:-1];
     return [NSString stringWithFormat:@"%@",userId];
@@ -68,98 +82,78 @@ __strong static NSDictionary *brandDic;
 
 +(void)setDBPW0:(NSString*)someStr
 {
-    prefs = [NSUserDefaults standardUserDefaults];
-	[prefs setObject:[AppManager AES256Encrypt:someStr] forKey:@"SOMESTR0"];
+    [[[SettingsModel settings] prefs] setObject:[AppManager AES256Encrypt:someStr] forKey:@"SOMESTR0"];
 }
 
 +(NSString*)getDBPW0
 {
-    [[NSUserDefaults standardUserDefaults] synchronize];
-	prefs = [NSUserDefaults standardUserDefaults];
-	return [AppManager AES256Decrypt:[prefs objectForKey:@"SOMESTR0"]];
+    return [AppManager AES256Decrypt:[[[SettingsModel settings] prefs] objectForKey:@"SOMESTR0"]];
 }
 
 +(void)setDBPW1:(NSString*)someStr
 {
-    prefs = [NSUserDefaults standardUserDefaults];
-	[prefs setObject:[AppManager AES256Encrypt:someStr] forKey:@"SOMESTR1"];
+    [[[SettingsModel settings] prefs] setObject:[AppManager AES256Encrypt:someStr] forKey:@"SOMESTR1"];
 }
 
 +(NSString*)getDBPW1
 {
-    [[NSUserDefaults standardUserDefaults] synchronize];
-	prefs = [NSUserDefaults standardUserDefaults];
-	return [AppManager AES256Decrypt:[prefs objectForKey:@"SOMESTR1"]];
+    return [AppManager AES256Decrypt:[[[SettingsModel settings] prefs] objectForKey:@"SOMESTR1"]];
 }
 
 +(void)setGotNewOne:(BOOL)gotNewOne
 {
-	prefs = [NSUserDefaults standardUserDefaults];
-	[prefs setBool:gotNewOne forKey:@"GotNewOne"];
+    [[[SettingsModel settings] prefs] setBool:gotNewOne forKey:@"GotNewOne"];
 }
 
 +(BOOL)getGotNewOne
 {
-	[[NSUserDefaults standardUserDefaults] synchronize];
-	prefs = [NSUserDefaults standardUserDefaults];
-	return [prefs boolForKey:@"GotNewOne"];
+    return [[[SettingsModel settings] prefs] boolForKey:@"GotNewOne"];
 }
 
 +(void)setDBIsEncrypted:(BOOL)dbEncrpted
 {
-	prefs = [NSUserDefaults standardUserDefaults];
-	[prefs setBool:dbEncrpted forKey:@"DBEncrypted"];
+    [[[SettingsModel settings] prefs] setBool:dbEncrpted forKey:@"DBEncrypted"];
 }
 
 +(BOOL)getDBIsEncrypted;
 {
-	[[NSUserDefaults standardUserDefaults] synchronize];
-	prefs = [NSUserDefaults standardUserDefaults];
-	return [prefs boolForKey:@"DBEncrypted"];
+    return [[[SettingsModel settings] prefs] boolForKey:@"DBEncrypted"];
 }
 
 +(void)setDBCanEncrypt:(BOOL)dbEncrpted
 {
-    prefs = [NSUserDefaults standardUserDefaults];
-    [prefs setBool:dbEncrpted forKey:@"CanEncrypt"];
+    [[[SettingsModel settings] prefs] setBool:dbEncrpted forKey:@"CanEncrypt"];
 }
 
 +(BOOL)getDBCanEncrypt;
 {
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    prefs = [NSUserDefaults standardUserDefaults];
-    return [prefs boolForKey:@"CanEncrypt"];
+    return [[[SettingsModel settings] prefs] boolForKey:@"CanEncrypt"];
 }
 
 +(NSString*)getBuildDate
 {
     NSString *buildDate =[[[NSBundle mainBundle] infoDictionary] valueForKey:@"BuildDate"];
-	return buildDate;
+    return buildDate;
 }
 
 +(void)setLoginState:(BOOL)loginState
 {
-    prefs = [NSUserDefaults standardUserDefaults];
-	[prefs setBool:loginState forKey:@"LoginState"];
+    [[[SettingsModel settings] prefs] setBool:loginState forKey:@"LoginState"];
 }
 
 +(BOOL)getLoginState
 {
-    [[NSUserDefaults standardUserDefaults] synchronize];
-	prefs = [NSUserDefaults standardUserDefaults];
-	return [prefs boolForKey:@"LoginState"];
+    return [[[SettingsModel settings] prefs] boolForKey:@"LoginState"];
 }
 
 +(void)setCountry:(NSString*)country
 {
-    prefs = [NSUserDefaults standardUserDefaults];
-	[prefs setObject:country forKey:@"Country"];
+    [[[SettingsModel settings] prefs] setObject:country forKey:@"Country"];
 }
 
 +(NSString*)getCountry
 {
-    prefs = [NSUserDefaults standardUserDefaults];
-	return [prefs objectForKey:@"Country"];
+    return [[[SettingsModel settings] prefs] objectForKey:@"Country"];
 }
 
 +(NSString*)getAppVersion
@@ -187,25 +181,22 @@ __strong static NSDictionary *brandDic;
 //Used for Performance measuring
 +(void)setStartDateTimeStamp:(NSString*)startDateTime forIndex:(int)index
 {
-    prefs = [NSUserDefaults standardUserDefaults];
     NSString *startKey = [NSString stringWithFormat:@"StartDateTime%d",index];
-    [prefs setObject:startDateTime forKey:startKey];
+    [[[SettingsModel settings] prefs] setObject:startDateTime forKey:startKey];
 }
 
 +(void)setFinishDateTimeStamp:(NSString*)finishDateTime forIndex:(int)index
 {
-    prefs = [NSUserDefaults standardUserDefaults];
     NSString *finishKey = [NSString stringWithFormat:@"FinishDateTime%d",index];
-	[prefs setObject:finishDateTime forKey:finishKey];
+    [[[SettingsModel settings] prefs] setObject:finishDateTime forKey:finishKey];
 }
 
 +(NSTimeInterval)getStartToFinishTimeForIndex:(int)index
 {
-    prefs = [NSUserDefaults standardUserDefaults];
     NSString *startKey = [NSString stringWithFormat:@"StartDateTime%d",index];
     NSString *finishKey = [NSString stringWithFormat:@"FinishDateTime%d",index];
-    NSString *startDateStr = [prefs objectForKey:startKey];
-    NSString *finishDateStr = [prefs objectForKey:finishKey];
+    NSString *startDateStr = [[[SettingsModel settings] prefs] objectForKey:startKey];
+    NSString *finishDateStr = [[[SettingsModel settings] prefs] objectForKey:finishKey];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss.SSS";
     NSDate *startDate = [dateFormatter dateFromString:startDateStr];

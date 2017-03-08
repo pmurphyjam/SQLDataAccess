@@ -8,4 +8,5 @@
 
 #import "AppConstants.h"
 
-
+NSString *DB_FILE = @"Example.db";
+NSString *DB_FILEX = @"ExampleX.db";

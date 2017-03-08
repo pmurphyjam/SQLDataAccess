@@ -9,7 +9,13 @@
 #import <Foundation/Foundation.h>
 
 @interface SettingsModel : NSObject
+{
+    NSUserDefaults *prefs;
+}
 
+@property (nonatomic,strong) NSUserDefaults *prefs;
+
++(instancetype)settings;
 +(void)logout;
 +(void)setUserName:(NSString*)userName;
 +(NSString*)getUserName;

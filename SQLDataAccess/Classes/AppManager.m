@@ -139,9 +139,9 @@ __strong static NSDateFormatter *dateFormatter = nil;
     BOOL success = [url setResourceValue:[NSNumber numberWithBool:YES]
                                   forKey: NSURLIsExcludedFromBackupKey error: &error];
     if(success)
-        NDLog(@"AppManager : PathForFileWithName : Documents directory Excluded From Backup SUCCESS");
+        NELog(@"AppManager : PathForFileWithName : Documents directory Excluded From Backup SUCCESS");
     else
-        NDLog(@"AppManager : PathForFileWithName : Documents directory Excluded From Backup FAILURE");
+        NELog(@"AppManager : PathForFileWithName : Documents directory Excluded From Backup FAILURE");
     
     return pathForFile;
 }
