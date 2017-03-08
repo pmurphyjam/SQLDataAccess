@@ -1,45 +1,76 @@
 //
 //  SQLDataAccess.m
-//  AppIOS
 //
 //  Created by Pat Murphy on 5/16/14.
 //  Copyright (c) 2014 Fitamatic All rights reserved.
 //
 // Info : This DataAccess class controls all accesses to the SQLite Database, and greatly facilitates
 // the writing of SQL statements making them easily readable, efficient and maintable. This class has
-// been ran with Databases that have been in the Gigabytes for size.
+// been ran with Databases that have been in the Gigabytes for size. In addition SQLDataAccess supports
+// SQLCipher's encrypted database library, and is super easy to integrate as described below.
 //
-// Additionally the Database may be fully Encrypted using SQLCipher where all accesses are fully
-// Encrypted, and the Database can not be viewed unless opened with the proper Key. Once a DB is
-// encrypted, it can be easily be decrypted using the method : convertDBtoPlain, and an unencrypted plain text DB
+// The Database may be fully Encrypted using SQLCipher where all accesses are fully Encrypted,
+// and the Database can not be viewed unless opened with the proper Key. Once a DB is
+// encrypted, it can be easily decrypted using the method : convertDBtoPlain, and an unencrypted plain text DB
 // can be easily encrypted with : convertDBtoCipher provided the encryption key is known. Also the size of
-// the aes encryption key length can easily be set for different countries as defined by law.
-// To use SQLCipher you must remove 'libsqlite3.0.dylib', and add 'libsqlcipher.a' along with referencing the
-// SQLCipher version of <sqlite3.h>
-// To use the standard SQLite, just use 'libsqlite3.0.dylib' and the standard <sqlite3.h>
+// the AES encryption key length can easily be set for different countries as defined by law.
 //
-// SQL statements take the form of an NSMutableString, and Parameters are an NSMutableArray.
+// When SQLDataAccess runs, openConnection will print out the version of SQLite your presently using,
+// and if your using SQLCipher, it's version will also be printed out in the console.
+//
+// Your database name is dictated by the 'DB_FILE' define AppConstants, both it and 'DB_FILEX' must be identical,
+// and your database must be located in your NSBundle directory initially, and must have this exact same name.
+// Part of your database's encryption key is defined by 'DB_KEY'.
+//
+// If you want to debug your database, turn on the DEBUGNSQL or DEBUGDB defines in AppConstants by commenting
+// in the #define's. DEBUGDB shows you what happens in openConnection and all the DB copying on the initial
+// initialization. DEBUGNSQL shows you all your SQL statements executing, and their results in the console.
+// You don't need these turned on to debug bad SQL, a bad SQL statement will automatically be printed out in
+// the console, and contain SQL's error message to help you debug it. A good SQL statement will just execute.
+//
+// To use SQLCipher you must remove 'libsqlite3.tbd', and add 'libsqlcipher-ios.a' along with referencing the
+// SQLCipher version of <sqlite3.h> in Xcode's project : Search Paths : Header Search Paths.
+// To use the standard SQLite, just use 'libsqlite3.tbd' and the standard <sqlite3.h>
+// For SQLCipher you must also add '-DSQLITE_HAS_CODEC' in
+// Xcodes project : Apple LLVM 8.0 - Custom Compiler Flags : Other C Flags for both Debug & Release.
+// In addition SQLDataAccess requires the 'ENCRYPT' define which is placed in
+// Xcodes project : Apple LLVM 8.0 - Preprocessing : Preprocessor Macros for both Debug & Release.
+// With the SQLCipher library and ENCRYPT defined, the plain-text database on initialization will be copied
+// from the NSBundle directory into the Apps Document directory, and it will then apply the getDBPW0 value
+// to the database to encrypt it, and from that point on the database will always be encrypted. Once
+// encrypted, the database can't be read by any database tool like Navicat or anything. If your App
+// loses the encrption key, all the SQL will fail, and the data in the database is gone and can never be
+// retrieved until the end of the universe occurs which is a very long time so don't lose your encryption key.
+//
+// To obtain SQLCipher, go to 'https://www.zetetic.net/sqlcipher/'
+// SQLCipher is a onetime cost $499 to a company, and has a $99 a year maintance which is worth it!
+// SQLCipher works with BitCode = YES.
+//
+// In SQLDataAccess SQL statements take the form of an NSMutableString, and Parameters are an NSMutableArray.
 // The SQL strings and parameters are typically put in an NSDictionary, and then passed to this class.
 //
-// Alternatively one can write short queries for GetRecordsForQuery or ExecuteStatement.
-//
+// Alternatively one can write short one line queries for GetRecordsForQuery or ExecuteStatement.
 // For selects
 // NSMutableArray = GetRecordsForQuery:@"select firstName, lastName from Company where lastName = ? ",@"Smith",nil];
 // OR
 // For inserts or updates
 // BOOL = ExecuteStatement:@"insert into Company (firstName, lastName) values(?,?)",@"John",@"Smith", nil];
+// The nil is always required. Make sure all your SQL parameters have known values, a Nil object will not be added
+// to the parameters NSMutableArray, the SQL will still execute, but your SQL will likely be messed up.
 //
 // GetRecordsForQuery always returns an NSMutableArray of NSDictionary's where the Key's are the DB column names,
 // and the Values are the DB value contained in that column.
 // ExecuteStatement always returns a BOOL which may or may not be used indicating success or failure.
 //
-// This class also decodes all SQL statement errors and prints out a meaningful NSLog statement with the SQLite decoded
+// This class also decodes all SQL statement errors and prints out a meaningful NELog statement with the SQLite decoded
 // error making for easy debug and identification of SQL errors.
 //
 // All methods are thread safe, do not leak memory.
-// This class can handle Integer, Floats, Doubles, NSDates, Strings, or Blobs effiencently.
+// This class handles 64 bit Integers, Floats, Doubles, NSDates, Strings, or Blobs effiencently. 32 bit values are
+// just stored as 64 bit values, and blobs are also 64 bit.
 // Additionally SQL transactions can be excuted by loading an NSMutableArray of SQL And Parameters statements, and
-// then executed via sqlAndParamsForTransaction making for very efficient and quick inserts for large data sets.
+// then executed via sqlAndParamsForTransaction making for very efficient and quick inserts for large data sets. You
+// should limit the number of SQL statements in a Transaction to around 400 or SQLite will run out of memory.
 //
 // For Database's that go through revisions or addition of tables or columns, an AppInfo table can be created which
 // will store the DB's current version, and this version value will then dictate what alter table commands need to be
