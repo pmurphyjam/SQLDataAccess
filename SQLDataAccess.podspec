@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 s.name             = 'SQLDataAccess'
 s.version          = '0.2.0'
-s.summary          = 'SQLDataAccess is a library used to facilitate using SQLite in iOS.'
+s.summary          = 'SQLDataAccess is a class used to facilitate using either SQLite or SQLCipher in iOS.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
