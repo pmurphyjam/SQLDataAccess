@@ -28,7 +28,7 @@ s.author           = { 'pmurphyjam' => 'pmurphyjam@gmail.com' }
 s.source           = { :git => 'https://github.com/pmurphyjam/SQLDataAccess.git', :tag => s.version.to_s }
 s.social_media_url = 'https://twitter.com/pmurphyjam'
 
-#s.ios.deployment_target = '10.0'
+s.ios.deployment_target = '10.0'
 
 s.source_files = 'SQLDataAccess/Classes/**/*'
 
