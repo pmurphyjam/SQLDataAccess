@@ -159,9 +159,9 @@ This is what the App should do:
     
 ## For a more complicated example using SQL Transactions see:
 
-    [DBExample](https://github.com/pmurphyjam/DBExample)
-    or
-    [ABExample](https://github.com/pmurphyjam/ABExample)
+ [DBExample](https://github.com/pmurphyjam/DBExample)
+ or
+ [ABExample](https://github.com/pmurphyjam/ABExample)
 
 Using the same SQLDataAcess class.
 
