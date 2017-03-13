@@ -2,7 +2,7 @@
 # * http://www.objc.io/issue-6/travis-ci.html
 # * https://github.com/supermarin/xcpretty#usage
 
-rvm: 1.9.3
+#rvm: 1.9.3
 osx_image: xcode8.2
 xcode_sdk: iphonesimulator10.0
 language: objective-c
