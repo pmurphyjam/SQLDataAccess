@@ -157,10 +157,14 @@ This is what the App should do:
         value = "1.2";
     }
     
-## For a more complicated example using SQL Transactions see:
+## For more complicated examples using SQL Transactions see:
 
+ Simple SQLite database example.
  [DBExample](https://github.com/pmurphyjam/DBExample)
+ 
  or
+ 
+ More complex SQLite Address Book and Calendar database example using Transactions.
  [ABExample](https://github.com/pmurphyjam/ABExample)
 
 Using the same SQLDataAcess class.
